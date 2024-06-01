@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Data from './Data';
+import Graphs from './Graphs';
 
 function App() {
+  const [data, setData] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="dark">
+      <div className="bg-dark min-h-screen text-gray-100">
+      <header className="p-4 text-center bg-gray-800">
+  <h1 className="text-3xl font-bold text-white">Alert Dashboard</h1>
+</header>
+
+        <Data setData={setData} />
+        <Graphs data={data} />
+      </div>
     </div>
   );
 }
