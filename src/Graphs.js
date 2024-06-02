@@ -65,8 +65,24 @@ const Graphs = ({ data }) => {
         }]
       },
       options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
         scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Categories'
+            }
+          },
           y: {
+            title: {
+              display: true,
+              text: 'Count'
+            },
             beginAtZero: true
           }
         }
@@ -96,7 +112,12 @@ const Graphs = ({ data }) => {
         }]
       },
       options: {
-        responsive: true
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
       }
     });
   };
@@ -115,14 +136,23 @@ const Graphs = ({ data }) => {
         }]
       },
       options: {
+        responsive: true,
         scales: {
           x: {
             type: 'time',
             time: {
               unit: 'day'
+            },
+            title: {
+              display: true,
+              text: 'Time'
             }
           },
           y: {
+            title: {
+              display: true,
+              text: 'Count'
+            },
             beginAtZero: true
           }
         }

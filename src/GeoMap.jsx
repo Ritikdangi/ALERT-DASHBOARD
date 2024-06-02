@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Chart as ChartJS, BubbleController, LinearScale, PointElement, Tooltip, Title } from 'chart.js';
-import { Bubble } from 'react-chartjs-2';
+import { Chart as ChartJS, ScatterController, LinearScale, PointElement, Tooltip, Title } from 'chart.js';
+import { Scatter } from 'react-chartjs-2';
 import 'chartjs-chart-geo';
 
-ChartJS.register(BubbleController, LinearScale, PointElement, Tooltip, Title);
+ChartJS.register(ScatterController, LinearScale, PointElement, Tooltip, Title);
 
 const GeoMap = ({ data }) => {
   const [chartData, setChartData] = useState(null);
@@ -24,10 +24,13 @@ const GeoMap = ({ data }) => {
         }
       });
 
+      const screenWidth = window.innerWidth;
+      const bubbleSizeMultiplier = screenWidth < 600 ? 0.5 : 1;
+
       const geoData = Object.keys(alertLocations).map(ip => ({
         x: Math.random() * 360 - 180,
         y: Math.random() * 180 - 90,
-        r: alertLocations[ip]
+        r: alertLocations[ip] * 2 * bubbleSizeMultiplier // Adjust the size of the bubbles
       }));
 
       setChartData({
@@ -54,16 +57,25 @@ const GeoMap = ({ data }) => {
 
   return (
     <div className="p-4">
-   
-      <div className="relative h-64 flex justify-center">
-        <Bubble data={chartData} options={{
+      <div className="relative" style={{ height: '60vh' }}>
+        <Scatter data={chartData} options={{
+          responsive: true,
+          maintainAspectRatio: false,
           scales: {
             x: {
               type: 'linear',
-              position: 'bottom'
+              position: 'bottom',
+              title: {
+                display: true,
+                text: 'Longitude'
+              }
             },
             y: {
-              type: 'linear'
+              type: 'linear',
+              title: {
+                display: true,
+                text: 'Latitude'
+              }
             }
           }
         }} />
