@@ -48,8 +48,22 @@ const Graphs = ({ data }) => {
         datasets: [{
           label: 'Category Count',
           data: data,
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(54, 162, 235, 0.5)',
+            'rgba(255, 206, 86, 0.5)',
+            'rgba(75, 192, 192, 0.5)',
+            'rgba(153, 102, 255, 0.5)',
+            'rgba(255, 159, 64, 0.5)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
           borderWidth: 1
         }]
       },
@@ -72,9 +86,9 @@ const Graphs = ({ data }) => {
         datasets: [{
           data: data,
           backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)'
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(54, 162, 235, 0.5)',
+            'rgba(255, 206, 86, 0.5)'
           ],
           borderColor: [
             'rgba(255, 99, 132, 1)',
@@ -99,7 +113,7 @@ const Graphs = ({ data }) => {
           label: 'Alerts Over Time',
           data: data,
           borderColor: 'rgba(255, 99, 132, 1)',
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          backgroundColor: 'rgba(255, 99, 132, 0.5)',
           tension: 0.1
         }]
       },
@@ -133,7 +147,7 @@ const Graphs = ({ data }) => {
 
       <h2 className="text-xl mt-8 mb-4 text-white">Graph 3: Alerts Over Time</h2>
       <div className="relative h-64 flex justify-center">
-        <canvas id="timeSeriesChart" className="w-full h-full"></canvas>
+        <canvas id="timeSeriesChart" className="w-full h-full "></canvas>
       </div>
     </div>
   );
