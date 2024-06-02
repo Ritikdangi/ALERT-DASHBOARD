@@ -1,29 +1,27 @@
 import React, { useEffect } from 'react';
 import Chart from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
+import GeoMap from './GeoMap';
 
 const Graphs = ({ data }) => {
   useEffect(() => {
-    if (!data.length) return;
+    if (!data || !data.length) return;
 
     const categoryCount = {};
     const severityDistribution = {};
     const timeSeriesData = [];
 
     data.forEach(alert => {
-      // Check if the 'category' key exists in the 'alert' object
       if (alert.alert && alert.alert.category) {
         const category = alert.alert.category;
         categoryCount[category] = (categoryCount[category] || 0) + 1;
       }
 
-      // Check if the 'severity' key exists in the 'alert' object
       if (alert.alert && alert.alert.severity) {
         const severity = alert.alert.severity;
         severityDistribution[severity] = (severityDistribution[severity] || 0) + 1;
       }
 
-      // Check if the 'timestamp' key exists
       if (alert.timestamp) {
         timeSeriesData.push({
           x: new Date(alert.timestamp),
@@ -32,7 +30,6 @@ const Graphs = ({ data }) => {
       }
     });
 
-    // Render charts using the extracted data
     renderCategoryChart(Object.keys(categoryCount), Object.values(categoryCount));
     renderSeverityChart(Object.keys(severityDistribution), Object.values(severityDistribution));
     renderTimeSeriesChart(timeSeriesData);
@@ -149,6 +146,9 @@ const Graphs = ({ data }) => {
       <div className="relative h-64 flex justify-center">
         <canvas id="timeSeriesChart" className="w-full h-full "></canvas>
       </div>
+
+      <h2 className="text-xl mt-8 mb-4 text-white">Graph 4: Geographical Distribution of Alerts</h2>
+      <GeoMap data={data} />
     </div>
   );
 };
